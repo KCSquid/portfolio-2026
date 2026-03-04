@@ -55,7 +55,7 @@ export default function Home() {
           marginTop: 20 * aboutOpacity ** 1.8,
         }}
       >
-        <div className="w-full h-full relative flex flex-col items-center justify-center">
+        <div className="select-none w-full h-full relative flex flex-col items-center justify-center">
           <div className="w-full flex flex-col sm:flex-row justify-between items-end gap-2">
             <h1 className="opacity-0 sm:-mb-5 -mb-10.5 text-5xl sm:text-8xl -ml-0.5">
               portfolio
