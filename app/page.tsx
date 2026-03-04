@@ -49,26 +49,28 @@ export default function Home() {
   return (
     <div className="flex flex-col max-w-screen h-[600vh] items-center bg-[#f0f0f0]">
       <div
-        className="fixed w-full h-screen p-8 flex items-center justify-center bg-[#f0f0f0]"
+        className="fixed w-full h-screen p-4 sm:p-8 flex items-center justify-center bg-[#f0f0f0]"
         style={{
           opacity: 1 - aboutOpacity ** 3 * 0.8,
           marginTop: 20 * aboutOpacity ** 1.8,
         }}
       >
         <div className="w-full h-full relative flex flex-col items-center justify-center">
-          <div className="w-full flex justify-between items-end">
-            <h1 className="opacity-0 -mb-5 text-8xl -ml-0.5">portfolio</h1>
-            <h1 className="absolute -ml-0.5 -z-10 bg-[url('/toronto.png')] w-full h-full top-0 left-0 -mb-5 bg-cover bg-clip-text text-transparent font-sans font-bold text-8xl">
+          <div className="w-full flex flex-col sm:flex-row justify-between items-end gap-2">
+            <h1 className="opacity-0 sm:-mb-5 -mb-10.5 text-5xl sm:text-8xl -ml-0.5">
               portfolio
             </h1>
-            <h1 className="bg-[url('/toronto.png')] bg-cover bg-clip-text text-transparent font-alt font tracking-tighter text-xl">
+            <h1 className="absolute -ml-0.5 -z-10 bg-[url('/toronto.png')] w-full h-full top-0 left-0 -mb-5 bg-cover bg-clip-text text-transparent font-sans font-bold text-5xl sm:text-8xl">
+              portfolio
+            </h1>
+            <h1 className="bg-[url('/toronto.png')] bg-cover bg-clip-text text-transparent font-alt font tracking-tighter text-base sm:text-xl">
               software developer
             </h1>
           </div>
           <div className="bg-[url('/toronto.png')] w-full h-full bg-center bg-cover rounded-b-3xl"></div>
           <div className="bg-[url('/cncutout.png')] z-100 absolute w-full mt-[calc(6rem-1.25rem)] h-full bg-center bg-cover"></div>
           <h1
-            className="text-9xl absolute stroke text-white/25 opacity-60 font-sans top-[27%]"
+            className="text-5xl sm:text-9xl absolute stroke text-white/25 opacity-60 font-sans top-[27%] text-center"
             style={{
               marginTop: 10 * aboutOpacity ** 1.1,
             }}
@@ -78,9 +80,9 @@ export default function Home() {
         </div>
       </div>
       <div className="h-screen"></div>
-      <div className="w-full h-[550vh] mt-20 bg-[#0e0e0e] z-10 flex flex-col items-center rounded-t-[2.5rem]">
-        <div className="w-full h-full p-16 flex flex-col items-center gap-4">
-          <div className="font-alt text-5xl w-full flex flex-wrap gap-2 h-fit transition-colors duration-200">
+      <div className="w-full h-[550vh] mt-10 sm:mt-20 bg-[#0e0e0e] z-10 flex flex-col items-center rounded-t-[2.5rem]">
+        <div className="w-full h-full p-4 sm:p-16 flex flex-col items-center gap-4">
+          <div className="font-alt md:text-5xl text-4xl w-full flex flex-wrap gap-2 h-fit transition-colors duration-200">
             <span className="text-transparent select-none">000</span>
             {words.map((word, i) => (
               <span
@@ -99,7 +101,7 @@ export default function Home() {
             ))}
           </div>
           <div className="w-full h-fit flex justify-end font-alt mb-24">
-            <div className="max-w-1/2 flex flex-col text-white/50">
+            <div className="max-w-full md:max-w-2/3 lg:max-w-1/2 flex flex-col text-white/50">
               <h2>
                 I&apos;m a 16 year old developer based in Toronto, Canada. 🍁 I
                 specialize in building robust, scalable web applications and
@@ -108,7 +110,7 @@ export default function Home() {
                 elegant solutions. Let&apos;s create something impactful
                 together.
               </h2>
-              <button className="cursor-pointer px-6 py-2.5 border self-end border-white/25 rounded-full hover:text-black transition-colors duration-200 hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)]">
+              <button className="cursor-pointer px-6 mt-4 py-2.5 border self-end border-white/25 rounded-full hover:text-black transition-colors duration-200 hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)]">
                 Say Hello
               </button>
             </div>
@@ -141,21 +143,21 @@ export default function Home() {
         </div>
 
         <div className="absolute top-[500vh] bg-[#f0f0f0] z-10 w-full h-[120vh] -mt-20 p-16 flex flex-col items-center gap-24 rounded-t-[2.5rem]">
-          <div className="flex justify-between w-full">
-            <h1 className="font-sans text-9xl w-full">contact</h1>
-            <h1 className="font-sans text-3xl w-full text-right">
-              fullstack
+          <div className="flex flex-col sm:flex-row justify-between w-full gap-4">
+            <h1 className="font-sans text-5xl sm:text-9xl w-full">contact</h1>
+            <h1 className="font-sans text-xl w-full text-right md:block hidden">
+              full-stack
               <br />
               software developer
             </h1>
           </div>
-          <div className="flex justify-between w-full">
+          <div className="flex md:flex-row flex-col gap-8 md:gap-0 justify-between w-full">
             <div className="flex flex-col gap-4 w-full">
               <h1 className="font-sans text-3xl">
                 get in touch with me or explore further
               </h1>
               <div className="flex gap-8">
-                <div className="flex gap-4">
+                <div className="flex gap-2 sm:gap-4">
                   <a
                     href="https://github.com/jahvon"
                     target="_blank"
@@ -185,7 +187,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-col gap-8 w-full">
-              <div className="font-alt text-3xl w-full flex flex-wrap h-fit">
+              <div className="font-alt text-xl sm:text-3xl w-full flex flex-wrap h-fit">
                 <h1
                   dangerouslySetInnerHTML={{ __html: quotes[quoteIndex].text }}
                 />
@@ -218,7 +220,7 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full flex gap-4 absolute bottom-0 p-16 -z-10">
-            <h1 className="font-sans text-7xl">
+            <h1 className="font-sans text-3xl sm:text-7xl">
               Jahvon
               <br /> Cockburn
             </h1>
@@ -246,10 +248,10 @@ function Project({
 }) {
   return (
     <div
-      className={`border border-neutral-800 w-full h-fit sticky ${offset} shadow-[0px_-4px_6px_0px_rgba(0,0,0,0.1)] gap-4 flex flex-col p-8 bg-neutral-900 rounded-3xl mb-[50vh]`}
+      className={`border border-neutral-800 w-full h-fit sticky ${offset} shadow-[0px_-4px_6px_0px_rgba(0,0,0,0.1)] gap-4 flex flex-col p-4 sm:p-8 bg-neutral-900 rounded-3xl mb-[30vh] sm:mb-[50vh]`}
     >
-      <div className="flex w-full justify-between text-white items-center">
-        <h1 className="text-3xl font-sans">{title}</h1>
+      <div className="flex flex-col sm:flex-row w-full justify-between text-white items-center gap-2">
+        <h1 className="text-xl sm:text-3xl font-sans">{title}</h1>
         <a
           className="font-alt text-white/50 underline"
           href={url}
@@ -260,8 +262,8 @@ function Project({
         </a>
       </div>
 
-      <div className="flex w-full justify-between text-white items-center">
-        <div className="flex flex-col gap-4 w-1/2">
+      <div className="flex flex-col sm:flex-row w-full justify-between text-white items-center gap-4">
+        <div className="flex flex-col gap-4 w-full sm:w-1/2">
           <h1 className="font-alt text-white/50">{description}</h1>
           <h1 className="font-alt text-white/50">
             Skills Used:
@@ -270,7 +272,7 @@ function Project({
           </h1>
         </div>
         <div
-          className={`rounded-2xl w-1/2 max-w-100 aspect-video ${image} bg-cover bg-center`}
+          className={`rounded-2xl w-full sm:w-1/2 max-w-100 aspect-video ${image} bg-cover bg-center`}
         ></div>
       </div>
     </div>
