@@ -110,14 +110,22 @@ export default function Home() {
                 elegant solutions. Let&apos;s create something impactful
                 together.
               </h2>
-              <button className="cursor-pointer px-6 mt-4 py-2.5 border self-end border-white/25 rounded-full hover:text-black transition-colors duration-200 hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)]">
+              <button
+                className="cursor-pointer px-6 mt-4 py-2.5 border self-end border-white/25 rounded-full hover:text-black transition-colors duration-200 hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)]"
+                onClick={() =>
+                  window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth",
+                  })
+                }
+              >
                 Say Hello
               </button>
             </div>
           </div>
           <Project
             title="Language Coach"
-            url="..."
+            url="https://github.com/KCSquid/language-coach"
             description="Language Coach is a tool designed to help users improve their language skills through interactive exercises and feedback using Gemini AI. Features include interactive speaking/listening exercises and real-time feedback on pronunciation and grammar."
             image="bg-[url('/language.png')]"
             offset="top-16"
@@ -125,7 +133,7 @@ export default function Home() {
           />
           <Project
             title="Turny Stark"
-            url="..."
+            url="https://github.com/KCSquid/turny-stark"
             description="An algorithm and hardware project for automatically solving a Rubik's Cube. Includes cube rotation logic, servo control, and tuning for precise movements."
             image="bg-[url('/cube.png')]"
             offset="top-[calc(4rem+5rem)]"
@@ -133,7 +141,7 @@ export default function Home() {
           />
           <Project
             title="Virtis"
-            url="..."
+            url="https://github.com/KCSquid/virtis"
             description="Virtis, a toy programming language written in TypeScript with Deno to explore parsing, tokenization, and code generation."
             image="bg-[url('/virtis.png')]"
             offset="top-[calc(4rem+10rem)]"
@@ -159,7 +167,7 @@ export default function Home() {
               <div className="flex gap-8">
                 <div className="flex gap-2 sm:gap-4">
                   <a
-                    href="https://github.com/jahvon"
+                    href="https://github.com/kcsquid"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
@@ -168,7 +176,7 @@ export default function Home() {
                     <Github size={24} />
                   </a>
                   <a
-                    href="https://linkedin.com/in/jahvon"
+                    href="https://www.linkedin.com/in/jahvon-cockburn-b864b8313"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
@@ -177,7 +185,7 @@ export default function Home() {
                     <Linkedin size={24} />
                   </a>
                   <a
-                    href="mailto:jahvon.cockburn@gmail.com"
+                    href="mailto:kcs@kcsquid.xyz"
                     className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
                     aria-label="Email"
                   >
@@ -194,7 +202,7 @@ export default function Home() {
               </div>
               <div className="flex gap-12 w-full justify-center">
                 <button
-                  className="size-12 flex items-center justify-center rounded-full bg-[rgb(86,180,171)]"
+                  className="size-12 cursor-pointer flex items-center justify-center rounded-full bg-[rgb(86,180,171)]"
                   onClick={() =>
                     setQuoteIndex(
                       (prev) => (prev - 1 + quotes.length) % quotes.length,
@@ -208,7 +216,7 @@ export default function Home() {
                   {quoteIndex + 1}
                 </h1>
                 <button
-                  className="size-12 flex items-center justify-center rounded-full bg-[rgb(86,180,171)]"
+                  className="size-12 cursor-pointer flex items-center justify-center rounded-full bg-[rgb(86,180,171)]"
                   onClick={() =>
                     setQuoteIndex((prev) => (prev + 1) % quotes.length)
                   }
