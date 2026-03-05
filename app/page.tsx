@@ -8,11 +8,18 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { cubicBezier } from "motion";
 
 export default function Home() {
-  const [aboutOpacity, setAboutOpacity] = useState(0);
   const [visibleWords, setVisibleWords] = useState(0);
   const [quoteIndex, setQuoteIndex] = useState(0);
+
+  const { scrollYProgress } = useScroll();
+  const firstScrollProgress = useTransform(scrollYProgress, [0, 0.23], [0, 1]);
+  const scrollCurve = useTransform(scrollYProgress, [0, 0.23], [1, 0], {
+    ease: cubicBezier(1, 0, 0.8, 0.8),
+  });
 
   const highlightStyle = "color: rgb(44,92,87); font-weight: 500;";
   const quotes = [
@@ -33,27 +40,24 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const docHeight =
-        (document.documentElement.scrollHeight - window.innerHeight) / 4.5;
-      const scrollPercent = docHeight > 0 ? (scrollY * 1.15) / docHeight : 0;
-      setAboutOpacity(scrollPercent);
       const wordCount = words.length;
-      setVisibleWords(Math.floor(scrollPercent * wordCount) - 8);
+      setVisibleWords(
+        Math.floor(firstScrollProgress.get() * 1.25 * wordCount) - 8,
+      );
     };
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [words.length]);
+  }, [words.length, firstScrollProgress]);
 
   return (
     <div className="flex flex-col max-w-screen items-center bg-[#f0f0f0]">
       <div className="w-full h-screen">
-        <div
+        <motion.div
           className="fixed w-full h-screen p-4 sm:p-8 flex items-center justify-center bg-[#f0f0f0]"
           style={{
-            opacity: 1 - aboutOpacity ** 3 * 0.8,
-            marginTop: Math.min(20 * aboutOpacity ** 1.8, 100),
+            opacity: scrollCurve.get(),
+            translateY: `${7 - 7 * scrollCurve.get()}%`,
           }}
         >
           <div className="select-none w-full h-full relative flex flex-col items-center justify-center">
@@ -78,19 +82,19 @@ export default function Home() {
                   software developer
                 </h1>
               </div>
-              <div className="bg-[url('/cncutout.png')] w-full h-full bg-center bg-cover"></div>
+              <div className="bg-[url('/cncutout2.png')] w-full h-full bg-center bg-cover"></div>
             </div>
-            <h1
+            <motion.h1
               className="text-7xl stroke-thin sm:text-9xl absolute sm:stroke text-white/25 opacity-60 font-sans top-[27%] text-center"
               style={{
-                marginTop: 10 * aboutOpacity ** 1.1,
+                translateY: `${25 - 25 * scrollCurve.get()}%`,
               }}
             >
               jahvon
               <br /> cockburn
-            </h1>
+            </motion.h1>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="w-full h-[475vh] mt-10 sm:mt-20 bg-[#0e0e0e] z-10 flex flex-col items-center rounded-t-[2.5rem]">
@@ -105,8 +109,8 @@ export default function Home() {
                   opacity: i <= visibleWords ? 1 : 0.1,
                   color:
                     14 <= i && i <= 17
-                      ? `rgba(86,180,171,${aboutOpacity})`
-                      : `rgba(255,255,255,${aboutOpacity})`,
+                      ? `rgba(86,180,171,${firstScrollProgress.get()})`
+                      : `rgba(255,255,255,${firstScrollProgress.get()})`,
                 }}
               >
                 {word}
@@ -141,7 +145,7 @@ export default function Home() {
             url="https://github.com/KCSquid/language-coach"
             description="Language Coach is a tool designed to help users improve their language skills through interactive exercises and feedback using Gemini AI. Features include interactive speaking/listening exercises and real-time feedback on pronunciation and grammar."
             image="bg-[url('/language.png')]"
-            offset="top-16"
+            offset="top-4 sm:top-16"
             skills="Next.js, TypeScript, Gemini API, puter.js, daisyUI, Tailwind CSS"
           />
           <Project
@@ -149,7 +153,7 @@ export default function Home() {
             url="https://github.com/KCSquid/turny-stark"
             description="An algorithm and hardware project for automatically solving a Rubik's Cube. Includes cube rotation logic, servo control, and tuning for precise movements."
             image="bg-[url('/cube.png')]"
-            offset="top-[calc(4rem+5rem)]"
+            offset="top-[calc(1rem+3.5rem)] sm:top-[calc(4rem+5rem)]"
             skills="Algorithm Design, Servo Control, Embedded Systems"
           />
           <Project
@@ -157,12 +161,12 @@ export default function Home() {
             url="https://github.com/KCSquid/virtis"
             description="Virtis, a toy programming language written in TypeScript with Deno to explore parsing, tokenization, and code generation."
             image="bg-[url('/virtis.png')]"
-            offset="top-[calc(4rem+10rem)]"
+            offset="top-[calc(1rem+7rem)] sm:top-[calc(4rem+10rem)]"
             skills="Deno, TypeScript, Node.js"
           />
         </div>
 
-        <div className="absolute top-[500vh] bg-[#f0f0f0] z-10 w-full h-fit -mt-20 p-16 flex flex-col items-center gap-24 rounded-t-[2.5rem]">
+        <div className="absolute top-[500vh] bg-[#f0f0f0] z-10 w-full h-fit -mt-22 sm:-mt-19 p-16 flex flex-col items-center gap-24 rounded-t-[2.5rem]">
           <div className="flex flex-col sm:flex-row justify-between w-full gap-4">
             <h1 className="font-sans text-5xl sm:text-9xl w-full">contact</h1>
             <h1 className="font-sans text-xl w-full text-right md:block hidden">
@@ -271,7 +275,15 @@ function Project({
     <div
       className={`border border-neutral-800 w-full h-fit sticky ${offset} shadow-[0px_-4px_6px_0px_rgba(0,0,0,0.1)] gap-4 flex flex-col p-4 sm:p-8 bg-neutral-900 rounded-3xl mb-[15vh] sm:mb-[35vh]`}
     >
-      <div className="flex flex-col sm:flex-row w-full justify-between text-white items-center gap-2">
+      <div
+        className="absolute inset-0 pointer-events-none rounded-3xl opacity-15"
+        style={{
+          background:
+            "radial-gradient(circle at 60% 40%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 60%, transparent 100%)",
+          zIndex: 0,
+        }}
+      />
+      <div className="flex flex-row w-full justify-between text-white items-center gap-2">
         <h1 className="text-xl sm:text-3xl font-sans">{title}</h1>
         <a
           className="font-alt text-white/50 underline"
