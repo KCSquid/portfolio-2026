@@ -36,10 +36,10 @@ export default function Home() {
       const scrollY = window.scrollY;
       const docHeight =
         (document.documentElement.scrollHeight - window.innerHeight) / 4.5;
-      const scrollPercent = docHeight > 0 ? (scrollY * 1.25) / docHeight : 0;
+      const scrollPercent = docHeight > 0 ? (scrollY * 1.15) / docHeight : 0;
       setAboutOpacity(scrollPercent);
       const wordCount = words.length;
-      setVisibleWords(Math.floor(scrollPercent * wordCount) - 6);
+      setVisibleWords(Math.floor(scrollPercent * wordCount) - 8);
     };
     window.addEventListener("scroll", handleScroll);
     handleScroll();
@@ -47,40 +47,53 @@ export default function Home() {
   }, [words.length]);
 
   return (
-    <div className="flex flex-col max-w-screen h-[600vh] items-center bg-[#f0f0f0]">
-      <div
-        className="fixed w-full h-screen p-4 sm:p-8 flex items-center justify-center bg-[#f0f0f0]"
-        style={{
-          opacity: 1 - aboutOpacity ** 3 * 0.8,
-          marginTop: 20 * aboutOpacity ** 1.8,
-        }}
-      >
-        <div className="select-none w-full h-full relative flex flex-col items-center justify-center">
-          <div className="w-full flex flex-col sm:flex-row justify-between items-end gap-2">
-            <h1 className="opacity-0 sm:-mb-5 -mb-10.5 text-5xl sm:text-8xl -ml-0.5">
-              portfolio
-            </h1>
-            <h1 className="absolute -ml-0.5 -z-10 bg-[url('/toronto.png')] w-full h-full top-0 left-0 -mb-5 bg-cover bg-clip-text text-transparent font-sans font-bold text-5xl sm:text-8xl">
-              portfolio
-            </h1>
-            <h1 className="bg-[url('/toronto.png')] bg-cover bg-clip-text text-transparent font-alt font tracking-tighter text-base sm:text-xl">
-              software developer
+    <div className="flex flex-col max-w-screen items-center bg-[#f0f0f0]">
+      <div className="w-full h-screen">
+        <div
+          className="fixed w-full h-screen p-4 sm:p-8 flex items-center justify-center bg-[#f0f0f0]"
+          style={{
+            opacity: 1 - aboutOpacity ** 3 * 0.8,
+            marginTop: Math.min(20 * aboutOpacity ** 1.8, 100),
+          }}
+        >
+          <div className="select-none w-full h-full relative flex flex-col items-center justify-center">
+            <div className="w-full flex flex-col sm:flex-row justify-between items-end gap-2">
+              <h1 className="opacity-0 font-sans sm:-mb-5 -mb-10.5 text-5xl sm:text-8xl -ml-0.5">
+                portfolio
+              </h1>
+              <h1 className="absolute -ml-0.5 -z-10 bg-[url('/toronto.png')] w-full h-full top-0 left-0 -mb-5 bg-cover bg-clip-text text-transparent font-sans font-bold text-5xl sm:text-8xl">
+                portfolio
+              </h1>
+              <h1 className="bg-[url('/toronto.png')] bg-cover bg-clip-text text-transparent font-alt font tracking-tighter text-base sm:text-xl">
+                software developer
+              </h1>
+            </div>
+            <div className="bg-[url('/toronto.png')] w-full h-full bg-center bg-cover rounded-b-3xl"></div>
+            <div className="absolute z-100 w-full h-full flex flex-col">
+              <div className="opacity-0 w-full flex flex-col sm:flex-row justify-between items-end gap-2">
+                <h1 className="font-sans sm:-mb-5 -mb-10.5 text-5xl sm:text-8xl -ml-0.5">
+                  portfolio
+                </h1>
+                <h1 className="bg-[url('/toronto.png')] bg-cover bg-clip-text text-transparent font-alt font tracking-tighter text-base sm:text-xl">
+                  software developer
+                </h1>
+              </div>
+              <div className="bg-[url('/cncutout.png')] w-full h-full bg-center bg-cover"></div>
+            </div>
+            <h1
+              className="text-7xl stroke-thin sm:text-9xl absolute sm:stroke text-white/25 opacity-60 font-sans top-[27%] text-center"
+              style={{
+                marginTop: 10 * aboutOpacity ** 1.1,
+              }}
+            >
+              jahvon
+              <br /> cockburn
             </h1>
           </div>
-          <div className="bg-[url('/toronto.png')] w-full h-full bg-center bg-cover rounded-b-3xl"></div>
-          <div className="bg-[url('/cncutout.png')] z-100 absolute w-full mt-[calc(6rem-1.25rem)] h-full bg-center bg-cover"></div>
-          <h1
-            className="text-5xl sm:text-9xl absolute stroke text-white/25 opacity-60 font-sans top-[27%] text-center"
-            style={{
-              marginTop: 10 * aboutOpacity ** 1.1,
-            }}
-          >
-            jahvon cockburn
-          </h1>
         </div>
       </div>
-      <div className="h-screen"></div>
-      <div className="w-full h-[550vh] mt-10 sm:mt-20 bg-[#0e0e0e] z-10 flex flex-col items-center rounded-t-[2.5rem]">
+
+      <div className="w-full h-[475vh] mt-10 sm:mt-20 bg-[#0e0e0e] z-10 flex flex-col items-center rounded-t-[2.5rem]">
         <div className="w-full h-full p-4 sm:p-16 flex flex-col items-center gap-4">
           <div className="font-alt md:text-5xl text-4xl w-full flex flex-wrap gap-2 h-fit transition-colors duration-200">
             <span className="text-transparent select-none">000</span>
@@ -111,7 +124,7 @@ export default function Home() {
                 together.
               </h2>
               <button
-                className="cursor-pointer px-6 mt-4 py-2.5 border self-end border-white/25 rounded-full hover:text-black transition-colors duration-200 hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)]"
+                className="cursor-pointer px-6 mt-4 py-2.5 border sm:self-center border-white/25 rounded-full hover:text-black transition-colors duration-200 hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)]"
                 onClick={() =>
                   window.scrollTo({
                     top: document.body.scrollHeight,
@@ -147,10 +160,9 @@ export default function Home() {
             offset="top-[calc(4rem+10rem)]"
             skills="Deno, TypeScript, Node.js"
           />
-          <div className="h-screen absolute top-[500vh] bg-[#f0f0f0] w-full"></div>
         </div>
 
-        <div className="absolute top-[500vh] bg-[#f0f0f0] z-10 w-full h-[120vh] -mt-20 p-16 flex flex-col items-center gap-24 rounded-t-[2.5rem]">
+        <div className="absolute top-[500vh] bg-[#f0f0f0] z-10 w-full h-fit -mt-20 p-16 flex flex-col items-center gap-24 rounded-t-[2.5rem]">
           <div className="flex flex-col sm:flex-row justify-between w-full gap-4">
             <h1 className="font-sans text-5xl sm:text-9xl w-full">contact</h1>
             <h1 className="font-sans text-xl w-full text-right md:block hidden">
@@ -159,50 +171,57 @@ export default function Home() {
               software developer
             </h1>
           </div>
+
           <div className="flex md:flex-row flex-col gap-8 md:gap-0 justify-between w-full">
-            <div className="flex flex-col gap-4 w-full">
-              <h1 className="font-sans text-3xl">
-                get in touch with me or explore further
-              </h1>
-              <div className="flex gap-8">
-                <div className="flex gap-2 sm:gap-4">
-                  <a
-                    href="https://github.com/kcsquid"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
-                    aria-label="GitHub"
-                  >
-                    <Github size={24} />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/jahvon-cockburn-b864b8313"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin size={24} />
-                  </a>
-                  <a
-                    href="mailto:kcs@kcsquid.xyz"
-                    className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
-                    aria-label="Email"
-                  >
-                    <Mail size={24} />
-                  </a>
+            <div className="flex flex-col gap-8 md:gap-16 w-full">
+              <div className="flex flex-col gap-4 w-full">
+                <h1 className="font-sans text-3xl">
+                  get in touch with me or explore further
+                </h1>
+                <div className="flex gap-8">
+                  <div className="flex gap-2 sm:gap-4">
+                    <a
+                      href="https://github.com/kcsquid"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
+                      aria-label="GitHub"
+                    >
+                      <Github size={24} />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/jahvon-cockburn-b864b8313"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin size={24} />
+                    </a>
+                    <a
+                      href="mailto:kcs@kcsquid.xyz"
+                      className="hover:bg-[rgba(86,180,171)] hover:border-[rgba(86,180,171)] transition-colors duration-200 border-2 p-2 rounded-full"
+                      aria-label="Email"
+                    >
+                      <Mail size={24} />
+                    </a>
+                  </div>
                 </div>
               </div>
+              <h1 className="font-sans text-3xl sm:text-7xl">
+                Jahvon
+                <br className="md:block hidden" /> Cockburn
+              </h1>
             </div>
-            <div className="flex flex-col gap-8 w-full">
-              <div className="font-alt text-xl sm:text-3xl w-full flex flex-wrap h-fit">
+            <div className="flex flex-col gap-8 w-full justify-between min-h-3/4">
+              <div className="font-alt text-xl sm:text-3xl w-full flex flex-wrap">
                 <h1
                   dangerouslySetInnerHTML={{ __html: quotes[quoteIndex].text }}
                 />
               </div>
               <div className="flex gap-12 w-full justify-center">
                 <button
-                  className="size-12 cursor-pointer flex items-center justify-center rounded-full bg-[rgb(86,180,171)]"
+                  className="size-12 cursor-pointer flex items-center justify-center rounded-full transition-colors duration-200 text-[rgb(86,180,171)] hover:text-black border-2 border-[rgb(86,180,171)] hover:bg-[rgb(86,180,171)]"
                   onClick={() =>
                     setQuoteIndex(
                       (prev) => (prev - 1 + quotes.length) % quotes.length,
@@ -216,7 +235,7 @@ export default function Home() {
                   {quoteIndex + 1}
                 </h1>
                 <button
-                  className="size-12 cursor-pointer flex items-center justify-center rounded-full bg-[rgb(86,180,171)]"
+                  className="size-12 cursor-pointer flex items-center justify-center rounded-full transition-colors duration-200 text-[rgb(86,180,171)] hover:text-black border-2 border-[rgb(86,180,171)] hover:bg-[rgb(86,180,171)]"
                   onClick={() =>
                     setQuoteIndex((prev) => (prev + 1) % quotes.length)
                   }
@@ -226,12 +245,6 @@ export default function Home() {
                 </button>
               </div>
             </div>
-          </div>
-          <div className="w-full flex gap-4 absolute bottom-0 p-16 -z-10">
-            <h1 className="font-sans text-3xl sm:text-7xl">
-              Jahvon
-              <br /> Cockburn
-            </h1>
           </div>
         </div>
       </div>
@@ -256,7 +269,7 @@ function Project({
 }) {
   return (
     <div
-      className={`border border-neutral-800 w-full h-fit sticky ${offset} shadow-[0px_-4px_6px_0px_rgba(0,0,0,0.1)] gap-4 flex flex-col p-4 sm:p-8 bg-neutral-900 rounded-3xl mb-[30vh] sm:mb-[50vh]`}
+      className={`border border-neutral-800 w-full h-fit sticky ${offset} shadow-[0px_-4px_6px_0px_rgba(0,0,0,0.1)] gap-4 flex flex-col p-4 sm:p-8 bg-neutral-900 rounded-3xl mb-[15vh] sm:mb-[35vh]`}
     >
       <div className="flex flex-col sm:flex-row w-full justify-between text-white items-center gap-2">
         <h1 className="text-xl sm:text-3xl font-sans">{title}</h1>
